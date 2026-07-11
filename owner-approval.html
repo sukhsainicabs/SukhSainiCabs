@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Booking Approval — SukhSainiCabs (Owner Only)</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:'Poppins',sans-serif;background:#0a0a0a;color:#fff;min-height:100vh;padding:28px 16px}
+  .wrap{max-width:600px;margin:0 auto}
+  .back{display:inline-block;color:rgba(255,255,255,0.4);font-size:0.82rem;margin-bottom:22px;transition:color 0.2s;text-decoration:none}
+  .back:hover{color:#C8963E}
+  .header{text-align:center;margin-bottom:24px}
+  .tag{display:inline-block;background:rgba(200,150,62,0.12);border:1px solid rgba(200,150,62,0.28);color:#C8963E;padding:4px 14px;border-radius:50px;font-size:0.7rem;font-weight:700;text-transform:uppercase;letter-spacing:1px;margin-bottom:12px}
+  .header h1{font-size:1.5rem;color:#C8963E;margin-bottom:5px}
+  .header p{color:rgba(255,255,255,0.42);font-size:0.83rem}
+  .tip{background:rgba(200,150,62,0.07);border:1px solid rgba(200,150,62,0.16);border-radius:10px;padding:13px 16px;color:rgba(255,255,255,0.58);font-size:0.81rem;line-height:1.78;margin-bottom:20px}
+  .tip strong{color:#C8963E}
+  .card{background:#141428;border:1px solid rgba(255,255,255,0.07);border-radius:14px;padding:24px;margin-bottom:20px}
+  .card h2{font-size:1rem;color:#C8963E;margin-bottom:17px;display:flex;align-items:center;gap:8px}
+  .row{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+  .fg{margin-bottom:13px}
+  .fg label{display:block;color:rgba(255,255,255,0.5);font-size:0.72rem;font-weight:600;text-transform:uppercase;letter-spacing:0.5px;margin-bottom:5px}
+  .fg input,.fg select,.fg textarea{width:100%;padding:10px 13px;background:rgba(255,255,255,0.06);border:1.5px solid rgba(255,255,255,0.09);border-radius:8px;color:#fff;font-family:inherit;font-size:0.87rem;outline:none;transition:border 0.2s}
+  .fg input:focus,.fg select:focus,.fg textarea:focus{border-color:#C8963E}
+  .fg select option{background:#141428}
+  .fg textarea{height:74px;resize:none}
+  .prev-label{color:rgba(255,255,255,0.32);font-size:0.7rem;text-transform:uppercase;letter-spacing:1px;margin-bottom:7px}
+  .prev{background:rgba(0,0,0,0.45);border:1px solid rgba(255,255,255,0.06);border-radius:9px;padding:13px;font-size:0.79rem;color:rgba(255,255,255,0.68);white-space:pre-wrap;line-height:1.78;font-family:monospace;max-height:200px;overflow-y:auto;margin-bottom:14px}
+  .btn{display:block;width:100%;padding:13px;border:none;border-radius:50px;font-size:0.91rem;font-weight:700;cursor:pointer;transition:all 0.28s;font-family:inherit;margin-bottom:9px}
+  .btn-wa{background:#25D366;color:#fff}
+  .btn-wa:hover{background:#1daf58;transform:translateY(-2px);box-shadow:0 6px 18px rgba(37,211,102,0.32)}
+  .btn-sms{background:linear-gradient(135deg,#C8963E,#A67A2E);color:#000}
+  .btn-sms:hover{transform:translateY(-2px);box-shadow:0 6px 18px rgba(200,150,62,0.36)}
+  .btn-rej{background:rgba(239,68,68,0.11);color:#f87171;border:1px solid rgba(239,68,68,0.22)}
+  .btn-rej:hover{background:rgba(239,68,68,0.2)}
+  .tpl{background:rgba(200,150,62,0.055);border:1px solid rgba(200,150,62,0.13);border-radius:9px;padding:12px 15px;color:rgba(255,255,255,0.58);font-size:0.79rem;line-height:1.78;margin-bottom:11px}
+  .tpl strong{color:#C8963E;display:block;margin-bottom:3px}
+  code{background:rgba(0,0,0,0.4);padding:2px 6px;border-radius:4px;font-size:0.78rem}
+  @media(max-width:480px){.row{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <a href="index.html" class="back">← Back to Website</a>
+
+  <div class="header">
+    <div class="tag">🔐 Owner Portal — Not for Customers</div>
+    <h1>🚕 Booking Approval</h1>
+    <p>SukhSainiCabs · Fazilka — Send approval or rejection to customers</p>
+  </div>
+
+  <div class="tip">
+    <strong>How to use:</strong> When a booking request arrives on your WhatsApp or Email, enter the customer details below, then click <strong>"Send Approval on WhatsApp"</strong>. The customer will instantly receive a professional confirmation message on their WhatsApp.
+  </div>
+
+  <div class="card">
+    <h2>📋 Enter Customer Booking Details</h2>
+    <div class="row">
+      <div class="fg"><label>Customer Name</label><input id="cn" placeholder="Gurpreet Singh" oninput="upd()"/></div>
+      <div class="fg"><label>Customer WhatsApp No.</label><input id="cp" placeholder="919876543210" oninput="upd()"/></div>
+    </div>
+    <div class="row">
+      <div class="fg"><label>From</label><input id="cf" placeholder="Fazilka" oninput="upd()"/></div>
+      <div class="fg"><label>To</label><input id="ct" placeholder="Amritsar" oninput="upd()"/></div>
+    </div>
+    <div class="row">
+      <div class="fg"><label>Travel Date</label><input type="date" id="cd" oninput="upd()"/></div>
+      <div class="fg"><label>Pickup Time</label><input type="time" id="ctm" oninput="upd()"/></div>
+    </div>
+    <div class="fg">
+      <label>Vehicle</label>
+      <select id="cv" onchange="upd()">
+        <option>Sedan – Dzire / Amaze (4 Seat)</option>
+        <option>SUV – Ertiga (6 Seat)</option>
+        <option>SUV – Innova (7 Seat)</option>
+        <option>Tempo Traveller (9–14 Seat)</option>
+      </select>
+    </div>
+    <div class="fg"><label>Extra Note to Customer (optional)</label><textarea id="cnote" placeholder="Driver will call you 30 min before pickup. Payment on arrival." oninput="upd()"></textarea></div>
+
+    <div class="prev-label">Approval Message Preview</div>
+    <div class="prev" id="prev">Fill in details above to see message preview...</div>
+
+    <button class="btn btn-wa" onclick="sendWA()">💬 Send Approval on WhatsApp</button>
+    <button class="btn btn-sms" onclick="sendSMS()">📱 Send Short SMS</button>
+    <button class="btn btn-rej" onclick="sendRej()">❌ Send Rejection / Not Available</button>
+  </div>
+
+  <div class="card">
+    <h2>💡 Quick Reply Templates (Save in WhatsApp Business)</h2>
+    <div class="tpl"><strong>✅ Booking Received (Instant Reply)</strong>ਤੁਹਾਡੀ booking request ਮਿਲ ਗਈ ✅ ਅਸੀਂ ਜਲਦ confirm ਕਰਕੇ approval ਭੇਜਾਂਗੇ। — SukhSainiCabs 🚕</div>
+    <div class="tpl"><strong>❌ Not Available</strong>Sorry, we are not available on your requested date. Please suggest an alternate date — we will try our best. Call: +91 87280 21605 — SukhSainiCabs</div>
+    <div class="tpl"><strong>🚗 Driver Details (Send Before Trip)</strong>Your driver [Name] will pick you up at [Time]. Driver No: +91 [Number]. Vehicle: [Model] | [Number Plate]. Safe travels! — SukhSainiCabs 🙏</div>
+    <div class="tpl"><strong>💰 Fare Quote</strong>For your trip [From] → [To] on [Date], the fare will be ₹[Amount] all inclusive, no extra charges. Confirm by replying YES. — SukhSainiCabs</div>
+  </div>
+
+</div>
+<script>
+  const g = id => document.getElementById(id)?.value.trim() || '';
+  function fmtDate(s) {
+    if (!s) return '';
+    const d = new Date(s);
+    const D=['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];
+    const M=['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+    return `${D[d.getDay()]}, ${d.getDate()} ${M[d.getMonth()]} ${d.getFullYear()}`;
+  }
+  function vals() {
+    return {
+      name : g('cn')  || '[Customer Name]',
+      phone: g('cp')  || '[Phone]',
+      from : g('cf')  || '[From]',
+      to   : g('ct')  || '[To]',
+      date : fmtDate(g('cd')) || '[Date]',
+      time : g('ctm') || 'As discussed',
+      veh  : document.getElementById('cv')?.value || '',
+      note : g('cnote')
+    };
+  }
+  function approvalMsg(v) {
+    return `✅ *Booking CONFIRMED — SukhSainiCabs* 🚕\n\nDear ${v.name},\n\nYour cab booking is *APPROVED* ✅\n\n📅 *Date*    : ${v.date}\n🗺️ *Route*  : ${v.from} → ${v.to}\n🚗 *Vehicle* : ${v.veh}\n🕐 *Pickup*  : ${v.time}${v.note ? '\n\n📌 ' + v.note : ''}\n\nYour driver will contact you before pickup time.\nFor queries: 📞 *+91 87280 21605*\n\nThank you for choosing *SukhSainiCabs* 🙏\nSafe travels! 🛣️`;
+  }
+  function rejectMsg(v) {
+    return `❌ *Booking Update — SukhSainiCabs*\n\nDear ${v.name},\n\nSorry, we are currently *not available* on ${v.date} for the route *${v.from} → ${v.to}*.\n\nPlease suggest an alternate date and we will try our best.\n\n📞 *+91 87280 21605*\n📧 Sukhsainicabs@gmail.com\n\nApologies for the inconvenience 🙏\n— *SukhSainiCabs Team*`;
+  }
+  function upd() { document.getElementById('prev').textContent = approvalMsg(vals()); }
+  function ph()  { return vals().phone.replace(/\D/g,''); }
+  function sendWA()  { const p=ph(); if(!p||p==='phone'){alert('Please enter customer WhatsApp number.');return;} window.open(`https://wa.me/${p}?text=${encodeURIComponent(approvalMsg(vals()))}`,'_blank'); }
+  function sendSMS() { const v=vals(),p=ph(); const m=`Booking CONFIRMED-SukhSainiCabs. Date:${v.date} Route:${v.from} to ${v.to} Vehicle:${v.veh} Pickup:${v.time}. Driver will call. +91 87280 21605`; window.location.href=`sms:${p}?body=${encodeURIComponent(m)}`; }
+  function sendRej()  { const p=ph(); if(!p){alert('Please enter customer WhatsApp number.');return;} window.open(`https://wa.me/${p}?text=${encodeURIComponent(rejectMsg(vals()))}`,'_blank'); }
+</script>
+</body>
+</html>
